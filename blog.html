@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | AutoMate</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">Auto<span>Mate</span></a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#pricing">Pricing</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+        <li><a href="index.html#contact" class="btn btn-nav">Get Started</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Blog Hero -->
+  <header class="blog-hero">
+    <div class="container">
+      <h1>AutoMate Blog</h1>
+      <p>Insights, guides, and tips on business automation to help you work smarter.</p>
+    </div>
+  </header>
+
+  <!-- Blog Filter -->
+  <section class="blog-filter">
+    <div class="container">
+      <div class="filter-tabs" id="filter-tabs">
+        <button class="filter-tab active" data-filter="all">All Posts</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Article -->
+  <section class="blog-featured" id="blog-featured">
+    <div class="container"></div>
+  </section>
+
+  <!-- Blog Grid -->
+  <section class="blog-listing">
+    <div class="container">
+      <div class="blog-grid" id="blog-grid">
+        <!-- Articles populated by JS -->
+      </div>
+      <div class="blog-empty" id="blog-empty" style="display: none;">
+        <p>No articles found in this category.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">Auto<span>Mate</span></a>
+          <p>Helping businesses work smarter through intelligent automation.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="index.html#services">Workflow Automation</a></li>
+            <li><a href="index.html#services">Email Automation</a></li>
+            <li><a href="index.html#services">Data &amp; Reporting</a></li>
+            <li><a href="index.html#services">AI Automation</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="index.html#how-it-works">How It Works</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Get in Touch</h4>
+          <ul>
+            <li>hello@automate.com</li>
+            <li>(555) 123-4567</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 AutoMate. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="articles-data.js"></script>
+  <script src="blog.js"></script>
+</body>
+</html>

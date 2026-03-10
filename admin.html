@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel | AutoMate Blog</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Login Gate -->
+  <div class="admin-login" id="admin-login">
+    <div class="admin-login-card">
+      <div class="admin-login-header">
+        <a href="index.html" class="logo">Auto<span>Mate</span></a>
+        <h2>Admin Access</h2>
+        <p>Enter your password to manage articles.</p>
+      </div>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="admin-password">Password</label>
+          <input type="password" id="admin-password" placeholder="Enter admin password" required autocomplete="current-password">
+        </div>
+        <div class="admin-error" id="login-error" style="display: none;">Incorrect password. Please try again.</div>
+        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+      </form>
+      <p class="admin-hint">First time? The default password is <code>automate2026</code><br>Change it in the Settings tab after logging in.</p>
+    </div>
+  </div>
+
+  <!-- Admin Dashboard (hidden until authenticated) -->
+  <div class="admin-dashboard" id="admin-dashboard" style="display: none;">
+
+    <!-- Admin Navbar -->
+    <nav class="navbar" id="navbar">
+      <div class="container nav-container">
+        <a href="index.html" class="logo">Auto<span>Mate</span></a>
+        <div class="admin-nav-right">
+          <a href="blog.html" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.85rem;">View Blog</a>
+          <button class="btn btn-nav" id="logout-btn" style="padding: 8px 16px; font-size: 0.85rem;">Logout</button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Admin Tabs -->
+    <div class="admin-tabs">
+      <div class="container">
+        <button class="admin-tab active" data-tab="editor">Write Article</button>
+        <button class="admin-tab" data-tab="manage">Manage Articles</button>
+        <button class="admin-tab" data-tab="settings">Settings</button>
+      </div>
+    </div>
+
+    <!-- Editor Tab -->
+    <div class="admin-content" id="tab-editor">
+      <div class="container">
+        <div class="editor-layout">
+          <!-- Editor Form -->
+          <div class="editor-form">
+            <h2 class="editor-title" id="editor-title">New Article</h2>
+
+            <div class="form-group">
+              <label for="article-title">Title</label>
+              <input type="text" id="article-title" placeholder="Enter article title..." class="editor-input-title">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="article-category">Category</label>
+                <input type="text" id="article-category" placeholder="e.g. Guides, Insights, News">
+              </div>
+              <div class="form-group">
+                <label for="article-author">Author</label>
+                <input type="text" id="article-author" placeholder="Author name" value="AutoMate Team">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="article-excerpt">Excerpt</label>
+              <textarea id="article-excerpt" rows="2" placeholder="Brief summary shown on the blog listing..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="article-content">Content <span class="label-hint">(Markdown supported)</span></label>
+              <div class="editor-toolbar">
+                <button type="button" class="toolbar-btn" data-action="bold" title="Bold"><strong>B</strong></button>
+                <button type="button" class="toolbar-btn" data-action="italic" title="Italic"><em>I</em></button>
+                <button type="button" class="toolbar-btn" data-action="heading" title="Heading">H</button>
+                <button type="button" class="toolbar-btn" data-action="link" title="Link">&#128279;</button>
+                <button type="button" class="toolbar-btn" data-action="quote" title="Blockquote">&#8220;</button>
+                <button type="button" class="toolbar-btn" data-action="ul" title="Bullet List">&#8226;</button>
+                <button type="button" class="toolbar-btn" data-action="ol" title="Numbered List">1.</button>
+                <button type="button" class="toolbar-btn" data-action="code" title="Code">&lt;/&gt;</button>
+                <button type="button" class="toolbar-btn" data-action="hr" title="Horizontal Rule">&#8212;</button>
+                <button type="button" class="toolbar-btn" data-action="table" title="Table">&#9638;</button>
+              </div>
+              <textarea id="article-content" rows="20" placeholder="Write your article content in Markdown..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>
+                <input type="checkbox" id="article-featured"> Mark as Featured Article
+              </label>
+            </div>
+
+            <div class="editor-actions">
+              <button class="btn btn-primary" id="publish-btn">Publish Article</button>
+              <button class="btn btn-outline" id="preview-toggle">Preview</button>
+              <button class="btn btn-outline" id="save-draft-btn">Save Draft</button>
+              <button class="btn btn-outline" id="clear-btn" style="color: #dc2626; border-color: #dc2626;">Clear</button>
+            </div>
+          </div>
+
+          <!-- Live Preview -->
+          <div class="editor-preview" id="editor-preview" style="display: none;">
+            <div class="preview-header">
+              <h3>Preview</h3>
+              <button class="btn btn-outline" id="close-preview" style="padding: 6px 12px; font-size: 0.8rem;">Close</button>
+            </div>
+            <div class="article-body" id="preview-body">
+              <p style="color: var(--gray);">Start writing to see a preview...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manage Tab -->
+    <div class="admin-content" id="tab-manage" style="display: none;">
+      <div class="container">
+        <h2>Manage Articles</h2>
+        <p style="color: var(--gray); margin-bottom: 24px;">Edit or remove existing articles. Changes are saved to your articles data file.</p>
+        <div class="manage-list" id="manage-list">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings Tab -->
+    <div class="admin-content" id="tab-settings" style="display: none;">
+      <div class="container">
+        <div style="max-width: 500px;">
+          <h2>Admin Settings</h2>
+          <p style="color: var(--gray); margin-bottom: 32px;">Update your admin password to keep your blog secure.</p>
+
+          <div class="form-group">
+            <label for="current-password">Current Password</label>
+            <input type="password" id="current-password" placeholder="Enter current password">
+          </div>
+          <div class="form-group">
+            <label for="new-password">New Password</label>
+            <input type="password" id="new-password" placeholder="Enter new password">
+          </div>
+          <div class="form-group">
+            <label for="confirm-password">Confirm New Password</label>
+            <input type="password" id="confirm-password" placeholder="Confirm new password">
+          </div>
+          <button class="btn btn-primary" id="change-password-btn">Update Password</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Output Modal -->
+    <div class="modal-overlay" id="output-modal" style="display: none;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Article Published!</h3>
+          <button class="modal-close" id="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Your article is now live on the blog. To make it permanent, copy the code below and add it to your <code>articles-data.js</code> file.</p>
+          <textarea class="modal-code" id="output-code" rows="12" readonly></textarea>
+          <button class="btn btn-primary" id="copy-code-btn" style="margin-top: 12px;">Copy to Clipboard</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="articles-data.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

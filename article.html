@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article | AutoMate Blog</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">Auto<span>Mate</span></a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#pricing">Pricing</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+        <li><a href="index.html#contact" class="btn btn-nav">Get Started</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Article Content -->
+  <article class="article-page">
+    <div class="container">
+      <a href="blog.html" class="article-back">&larr; Back to Blog</a>
+      <div class="article-header" id="article-header">
+        <!-- Populated by JS -->
+      </div>
+      <div class="article-body" id="article-body">
+        <!-- Populated by JS -->
+      </div>
+      <div class="article-footer">
+        <div class="article-share">
+          <span>Share this article:</span>
+          <button class="share-btn" id="copy-link" title="Copy link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            Copy Link
+          </button>
+        </div>
+        <a href="blog.html" class="btn btn-outline">Read More Articles</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- Not Found State -->
+  <div class="article-not-found" id="article-not-found" style="display: none;">
+    <div class="container" style="text-align: center; padding: 160px 24px 80px;">
+      <h2>Article Not Found</h2>
+      <p style="color: var(--gray); margin: 16px 0 32px;">The article you're looking for doesn't exist or has been removed.</p>
+      <a href="blog.html" class="btn btn-primary">Browse All Articles</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">Auto<span>Mate</span></a>
+          <p>Helping businesses work smarter through intelligent automation.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="index.html#services">Workflow Automation</a></li>
+            <li><a href="index.html#services">Email Automation</a></li>
+            <li><a href="index.html#services">Data &amp; Reporting</a></li>
+            <li><a href="index.html#services">AI Automation</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="index.html#how-it-works">How It Works</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Get in Touch</h4>
+          <ul>
+            <li>hello@automate.com</li>
+            <li>(555) 123-4567</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 AutoMate. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="articles-data.js"></script>
+  <script src="blog.js"></script>
+</body>
+</html>
