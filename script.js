@@ -111,10 +111,53 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 document.querySelectorAll(
-  ".service-card, .step, .pricing-card, .testimonial-card"
+  ".service-card, .step, .pricing-card, .testimonial-card, .faq-item"
 ).forEach((el) => {
   el.style.opacity = "0";
   el.style.transform = "translateY(20px)";
   el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
   observer.observe(el);
 });
+
+// FAQ accordion
+document.querySelectorAll(".faq-question").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const item = btn.parentElement;
+    const answer = item.querySelector(".faq-answer");
+    const isOpen = item.classList.contains("open");
+
+    // Close all
+    document.querySelectorAll(".faq-item.open").forEach((openItem) => {
+      openItem.classList.remove("open");
+      openItem.querySelector(".faq-answer").style.maxHeight = null;
+    });
+
+    // Open clicked (if it wasn't already open)
+    if (!isOpen) {
+      item.classList.add("open");
+      answer.style.maxHeight = answer.scrollHeight + "px";
+    }
+  });
+});
+
+// Lead magnet form
+const leadForm = document.getElementById("lead-magnet-form");
+if (leadForm) {
+  leadForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const btn = leadForm.querySelector('button[type="submit"]');
+    const originalText = btn.textContent;
+    btn.textContent = "Sending...";
+    btn.disabled = true;
+
+    setTimeout(() => {
+      showNotification(
+        "Check your inbox! Your free checklist is on its way.",
+        "success"
+      );
+      leadForm.reset();
+      btn.textContent = originalText;
+      btn.disabled = false;
+    }, 1200);
+  });
+}

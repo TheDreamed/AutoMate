@@ -220,8 +220,9 @@ function initArticlePage() {
     return;
   }
 
-  // Update page title
+  // Update page title and meta
   document.title = `${article.title} | AutoMate Blog`;
+  updateArticleMeta(article);
 
   // Render header
   headerEl.innerHTML = `
@@ -273,9 +274,55 @@ function initNavbar() {
   }
 }
 
+// ===== Newsletter Form =====
+function initNewsletter() {
+  const form = document.getElementById('newsletter-form');
+  if (!form) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    const originalText = btn.textContent;
+    btn.textContent = 'Subscribing...';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      // Show success notification
+      const el = document.createElement('div');
+      el.textContent = 'You\'re subscribed! Check your inbox for a welcome email.';
+      Object.assign(el.style, {
+        position: 'fixed', top: '90px', right: '24px', padding: '16px 24px',
+        borderRadius: '8px', fontWeight: '500', fontSize: '0.95rem', zIndex: '9999',
+        background: '#059669', color: '#fff', boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+      });
+      document.body.appendChild(el);
+      setTimeout(() => { el.style.opacity = '0'; el.style.transition = 'opacity 0.3s'; setTimeout(() => el.remove(), 300); }, 4000);
+
+      form.reset();
+      btn.textContent = originalText;
+      btn.disabled = false;
+    }, 1200);
+  });
+}
+
+// ===== Update OG meta for articles =====
+function updateArticleMeta(article) {
+  if (!article) return;
+  const setMeta = (prop, content) => {
+    let el = document.querySelector(`meta[property="${prop}"]`) || document.querySelector(`meta[name="${prop}"]`);
+    if (el) el.setAttribute('content', content);
+  };
+  setMeta('og:title', article.title + ' | AutoMate Blog');
+  setMeta('og:description', article.excerpt);
+  setMeta('twitter:title', article.title);
+  setMeta('twitter:description', article.excerpt);
+  document.querySelector('meta[name="description"]')?.setAttribute('content', article.excerpt);
+}
+
 // ===== Init =====
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initBlogListing();
   initArticlePage();
+  initNewsletter();
 });
