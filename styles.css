@@ -379,7 +379,7 @@ img {
 }
 
 .service-features li::before {
-  content: "\\2713";
+  content: "\2713";
   position: absolute;
   left: 0;
   color: var(--accent);
@@ -523,7 +523,7 @@ img {
 }
 
 .pricing-features li::before {
-  content: "\\2713";
+  content: "\2713";
   position: absolute;
   left: 0;
   color: var(--accent);
@@ -624,7 +624,7 @@ img {
 }
 
 .contact-benefits li::before {
-  content: "\\2713";
+  content: "\2713";
   position: absolute;
   left: 0;
   color: var(--accent);
@@ -1535,7 +1535,7 @@ img {
 }
 
 .lead-magnet-features li::before {
-  content: "\\2713";
+  content: "\2713";
   position: absolute;
   left: 0;
   color: var(--accent);
