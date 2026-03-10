@@ -34,21 +34,43 @@ contactForm.addEventListener("submit", (e) => {
     return;
   }
 
-  // Simulate form submission
+  // Submit to Formspree
   const submitBtn = contactForm.querySelector('button[type="submit"]');
   const originalText = submitBtn.textContent;
   submitBtn.textContent = "Sending...";
   submitBtn.disabled = true;
 
-  setTimeout(() => {
-    showNotification(
-      "Thank you! We'll be in touch within 24 hours.",
-      "success"
-    );
-    contactForm.reset();
-    submitBtn.textContent = originalText;
-    submitBtn.disabled = false;
-  }, 1500);
+  fetch(contactForm.action, {
+    method: "POST",
+    body: formData,
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        showNotification(
+          "Thank you! We'll be in touch within 24 hours.",
+          "success"
+        );
+        contactForm.reset();
+      } else {
+        showNotification(
+          "Something went wrong. Please try again.",
+          "error"
+        );
+      }
+    })
+    .catch(() => {
+      showNotification(
+        "Network error. Please try again later.",
+        "error"
+      );
+    })
+    .finally(() => {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    });
 });
 
 // Notification system
